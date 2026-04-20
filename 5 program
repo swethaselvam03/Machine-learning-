@@ -1,0 +1,305 @@
+
+
+
+Ex. No: 01
+
+Program to perform classification using K-Nearest Neighbor algorithm
+
+Aim:
+
+To perform classification using the K-Nearest Neighbor algorithm.
+
+Algorithm:
+
+Step 1: Import required libraries and load the dataset.
+
+Step 2: Separate features (X) and target labels (y).
+
+Step 3: Split the dataset into training and testing sets.
+
+Step 4: Initialize the KNN model with K value.
+
+Step 5: Train the model using training data.
+
+Step 6: Predict test data and evaluate accuracy.
+
+Code:
+
+Python
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from sklearn.metrics import accuracy_score
+
+
+
+data = load_iris()
+
+X, y = data.data, data.target
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+
+
+model = KNeighborsClassifier(n_neighbors=3)
+
+model.fit(X_train, y_train)
+
+
+
+pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, pred))
+
+
+
+Output:
+
+Accuracy: 0.93
+
+__________________________________________________
+
+Ex. No: 02
+
+Program to evaluate model using K-fold cross validation
+
+Aim:
+
+To evaluate a model using K-fold cross validation.
+
+Algorithm:
+
+Step 1: Import required libraries and load the dataset.
+
+Step 2: Divide the dataset into K equal folds.
+
+Step 3: Select one fold as test set and others as training set.
+
+Step 4: Train the model on training folds.
+
+Step 5: Evaluate the model on the test fold.
+
+Step 6: Repeat for all folds and compute average accuracy.
+
+
+
+Code:
+
+Python
+
+from sklearn.model_selection import cross_val_score
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.datasets import load_iris
+
+
+
+X, y = load_iris(return_X_y=True)
+
+
+
+model = LogisticRegression(max_iter=200)
+
+scores = cross_val_score(model, X, y, cv=5)
+
+
+
+print("Scores:", scores)
+
+print("Mean Accuracy:", scores.mean())
+
+
+
+
+
+Output:
+
+Scores: [0.96 1.00 0.93 0.96 1.00]
+
+Mean Accuracy: 0.97
+
+_________________________________________________
+
+Ex. No: 03
+
+Program to perform classification using Support Vector Machine
+
+
+
+Aim:
+
+To perform classification using Support Vector Machine.
+
+
+
+Algorithm:
+
+Step 1: Import required libraries and load the dataset.
+
+Step 2: Split the dataset into training and testing sets.
+
+Step 3: Initialize the SVM model with kernel.
+
+Step 4: Train the SVM model using training data.
+
+Step 5: Predict class labels for test data.
+
+Step 6: Evaluate model performance using accuracy.
+
+
+
+Code:
+
+Python
+
+from sklearn import svm
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+
+
+X, y = load_iris(return_X_y=True)
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+
+
+
+model = svm.SVC(kernel='linear')
+
+model.fit(X_train, y_train)
+
+
+
+print("Accuracy:", model.score(X_test, y_test))
+
+
+
+Output:
+
+Accuracy: 0.97
+
+__________________________________________________
+
+Ex. No: 04
+
+Program to perform hyperparameter tuning using Grid Search
+
+Aim:
+
+To perform hyperparameter tuning using Grid Search.
+
+
+
+Algorithm:
+
+Step 1: Import required libraries and define the model.
+
+Step 2: Define hyperparameter grid values.
+
+Step 3: Apply GridSearchCV with cross-validation.
+
+Step 4: Train model for all parameter combinations.
+
+Step 5: Select best parameters based on performance.
+
+Step 6: Evaluate optimized model.
+
+
+
+Code:
+
+Python
+
+from sklearn.model_selection import GridSearchCV
+
+from sklearn.svm import SVC
+
+from sklearn.datasets import load_iris
+
+
+
+X, y = load_iris(return_X_y=True)
+
+
+
+params = {'C':[0.1,1,10], 'kernel':['linear','rbf']}
+
+
+
+grid = GridSearchCV(SVC(), params, cv=5)
+
+grid.fit(X, y)
+
+
+
+print("Best Params:", grid.best_params_)
+
+Output:
+
+Best Params: {'C': 1, 'kernel': 'linear'}
+
+__________________________________________________
+
+
+
+Ex. No: 05
+
+Program to perform prediction using Linear Regression
+
+Aim:
+
+To perform prediction using Linear Regression.
+
+Algorithm:
+
+Step 1: Import required libraries and load dataset.
+
+Step 2: Separate independent (X) and dependent (y) variables.
+
+Step 3: Train Linear Regression model.
+
+Step 4: Predict output values.
+
+Step 5: Evaluate model.
+
+Code:
+
+Python
+
+from sklearn.linear_model import LinearRegression
+
+import numpy as np
+
+
+
+X = np.array([[1],[2],[3],[4]])
+
+y = np.array([2,4,6,8])
+
+
+
+model = LinearRegression()
+
+model.fit(X, y)
+
+
+
+print("Prediction for 5:", model.predict([[5]]))
+
+Output:
+
+Prediction for 5: [10.]
+
+
+
